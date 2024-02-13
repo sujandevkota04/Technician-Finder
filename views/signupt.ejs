@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technician Signup</title>
+    <link rel="stylesheet" href="/style_t.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Technician Signup</h1>
+        <div class="form-container">
+            <form action="/signupt" method="POST">
+                <input type="text" name="firstName" placeholder="First Name" required>
+                <input type="text" name="lastName" placeholder="Last Name" required>
+                <input type="text" name="contactNo" placeholder="Contact Number" required>
+                <!-- <input type="text" name="location" placeholder="Location/Address" required> -->
+                <label for="services">Select Location:</label>
+                <select id="location" name="location" multiple required>
+                    <option value="ktm">Kathmandu</option>
+                    <option value="lal">Bhaktapur</option>
+                    <option value="bkt">Lalitpur</option>
+                    <!-- Add more options as needed -->
+                </select>
+                <input type="password" name="password" placeholder="Password" required>
+                <label for="services">Select Services:</label>
+                <select id="services" name="services" multiple required>
+                    <option value="painting">Painting</option>
+                    <option value="carpentering">Carpentering</option>
+                    <option value="electrical">Electrician</option>
+                    <!-- Add more options as needed -->
+                </select>
+
+                <!-- <form action="/login" method="POST"> -->
+                    <!-- <button type="submit">Login</button> -->
+                    <button type="submit">Create Account</button>
+                <!-- </form> -->
+
+            </form>
+        </div>
+    </div>
+</body>
+</html>
