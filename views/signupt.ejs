@@ -4,11 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Technician Signup</title>
-    <link rel="stylesheet" href="/style_t.css">
+    <link rel="stylesheet" href="../CSS/style_t.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <h1>Technician Signup</h1>
+        <div class="header-div">
+            <h1>Technician Signup</h1>
+        </div>
         <div class="form-container">
             <form action="/signupt" method="POST">
                 <input type="text" name="firstName" placeholder="First Name" required>
@@ -26,14 +31,16 @@
                 <label for="services">Select Services:</label>
                 <select id="services" name="services" multiple required>
                     <option value="painting">Painting</option>
-                    <option value="carpentering">Carpentering</option>
+                    <option value="plumbing">Plumbing</option>
                     <option value="electrical">Electrician</option>
                     <!-- Add more options as needed -->
                 </select>
 
                 <!-- <form action="/login" method="POST"> -->
                     <!-- <button type="submit">Login</button> -->
-                    <button type="submit">Create Account</button>
+                    <div class="button-container">
+                        <button type="submit">Create Account</button>
+                    </div>
                 <!-- </form> -->
 
             </form>

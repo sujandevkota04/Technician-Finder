@@ -34,7 +34,8 @@
 
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Ubuntu", sans-serif;
+    font-style: normal;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
@@ -93,5 +94,13 @@ header {
 .service a:hover {
     background-color: #0056b3;
 }
+
+
+
+
+
+
+
+
 
 

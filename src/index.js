@@ -14,6 +14,8 @@ app.set('view engine', 'ejs');
 
 // static file
 app.use(express.static("public"));
+// app.use(express.static("images"));
+
 
 app.get("/", (req, res) => {
     res.render("login");
