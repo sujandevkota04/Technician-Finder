@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
   "dependencies": {
     "bcrypt": "^5.1.1",
     "crypto": "^1.0.1",
@@ -7,5 +11,8 @@
     "express-session": "^1.18.0",
     "jquery": "^3.7.1",
     "mongoose": "^8.1.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
   }
 }
