@@ -5,7 +5,7 @@ body {
     font-style: normal;
     color: #333; /* Darker for better contrast */
     margin: 0;
-    /* padding: 0; Remove default padding */
+    /* padding: 0; */
 }
 
 /* Header */
@@ -43,6 +43,7 @@ h1 {
     border: 1px solid #ddd; /* Border for each service */
     border-radius: 5px; /* Rounded corners */
     padding: 1rem; /* Padding inside each service */
+    padding-bottom: fixed;
     transition: box-shadow 0.2s ease-in-out; /* Smooth hover effect */
 }
 
@@ -109,20 +110,13 @@ a, button:hover {
 }
 
 
-/* Responsive design (optional) */
-@media (max-width: 768px) {
-    .services-container {
-        flex-direction: column; /* Stack services vertically */
-    }
-    .service {
-        margin: 0.5rem auto; /* Adjust margins for mobile */
-    }
-}
+
 
 /* Service details */
 .service-details {
-    position: absolute;
-    top: 50%;
+    position: relative;
+    /* top: 50%; */
+    bottom: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: left;
@@ -134,6 +128,7 @@ a, button:hover {
     border-radius: 5px;
     pointer-events: none; /* Prevent clicking on hidden details */
 }
+
 
 .service:hover .service-details {
     opacity: 1; /* Show details on hover */
