@@ -18,9 +18,23 @@
             <form action="/signupc" method="POST">
                 <input type="text" name="firstName" placeholder="First Name" required>
                 <input type="text" name="lastName" placeholder="Last Name" required>
-                <input type="text" name="contactNo" placeholder="Contact Number" required>
+                <!-- <input type="text" name="contactNo" placeholder="Contact Number" required> -->
+                <!-- <input type="tel" name="contactNo" pattern="[0-9]{10}" maxlength="10" placeholder="Contact Number" required> -->
+                <input type="tel" name="contactNo" pattern="[0-9]{10}" maxlength="10" placeholder="Contact Number" required onkeypress="return isNumberKey(event)">
+                <script>
+                    function isNumberKey(event) {
+                        var charCode = (event.which) ? event.which : event.keyCode;
+                        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                            event.preventDefault();
+                            return false;
+                        }
+                        return true;
+                    }
+                </script>
+                    
+                
                 <label for="location">Select Location:</label>
-                <select id="location" name="location" multiple required>
+                <select id="location" name="location" required>
                     <option value="Kathmandu">Kathmandu</option>
                     <option value="Bhaktapur">Bhaktapur</option>
                     <option value="Lalitpur">Lalitpur</option>

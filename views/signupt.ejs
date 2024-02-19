@@ -18,21 +18,34 @@
             <form action="/signupt" method="POST">
                 <input type="text" name="firstName" placeholder="First Name" required>
                 <input type="text" name="lastName" placeholder="Last Name" required>
-                <input type="text" name="contactNo" placeholder="Contact Number" required>
+                <!-- <input type="text" name="contactNo" placeholder="Contact Number" required> -->
+                <!-- <input type="tel" name="contactNo" pattern="[0-9]{10}" maxlength="10" placeholder="Contact Number" required> -->
+                <input type="tel" name="contactNo" pattern="[0-9]{10}" maxlength="10" placeholder="Contact Number" required onkeypress="return isNumberKey(event)">
+                <script>
+                    function isNumberKey(event) {
+                        var charCode = (event.which) ? event.which : event.keyCode;
+                        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                            event.preventDefault();
+                            return false;
+                        }
+                        return true;
+                    }
+                </script>
+
                 <!-- <input type="text" name="location" placeholder="Location/Address" required> -->
                 <label for="services">Select Location:</label>
-                <select id="location" name="location" multiple required>
-                    <option value="ktm">Kathmandu</option>
-                    <option value="lal">Bhaktapur</option>
-                    <option value="bkt">Lalitpur</option>
+                <select id="location" name="location" required>
+                    <option value="Kathmandu">Kathmandu</option>
+                    <option value="Bhaktapur">Bhaktapur</option>
+                    <option value="Lalitpur">Lalitpur</option>
                     <!-- Add more options as needed -->
                 </select>
                 <input type="password" name="password" placeholder="Password" required>
-                <label for="services">Select Services:</label>
-                <select id="services" name="services" multiple required>
-                    <option value="painting">Painting</option>
-                    <option value="plumbing">Plumbing</option>
-                    <option value="electrical">Electrician</option>
+                <label for="service">Select Services:</label>
+                <select id="service" name="service" required>
+                    <option value="Painting">Painting</option>
+                    <option value="Plumbing">Plumbing</option>
+                    <option value="Electrician">Electrician</option>
                     <!-- Add more options as needed -->
                 </select>
 

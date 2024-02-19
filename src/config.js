@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const connect = mongoose.connect("mongodb://localhost:27017/Login");
 
+
 // Check database connected or not
 connect.then(() => {
     console.log("Database Connected Successfully");
@@ -8,6 +9,9 @@ connect.then(() => {
 .catch(() => {
     console.log("Database cannot be Connected");
 })
+
+
+
 
 // Create Schema
 const Loginschema = new mongoose.Schema({
@@ -32,16 +36,23 @@ const Loginschema = new mongoose.Schema({
         type: String,
         required: true
     },
+    service: {
+        type: String,
+        required: function() {
+            // Check if the 'services' field has any data
+            // return this.services ? true : false;
+            return this.role ==='technician';
+        }
+    },
 
-    // role: {
-    //     type: String,
-    //     enum: ['client', 'technician'], // Possible values for role
-    //     required: true
-    // }
-    
-
-
+    role: {
+        type: String,
+        enum:['client', 'technician'], //possible value for role
+        required: true
+    }
 });
+
+
 
 // collection part
 const collection = new mongoose.model("users", Loginschema);

@@ -71,6 +71,7 @@ form {
 } */
 
 input[type="text"],
+input[type="tel"],
 input[type="password"] {
     width: 100%;
     margin-bottom: 10px;

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Technician Finder</title>
+    <title>Technician Finder Login Page</title>
     <link rel="stylesheet" href="../CSS/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +18,20 @@
         <div class="form-container">
             <h2>Login</h2>
             <form action="/login" method="POST">
-                <input type="text" name="username" placeholder="Username" required>
+                <!-- <input type="text" name="username" placeholder="Username" required> -->
+                <!-- <input type="tel" name="username" pattern="[0-9]{10}" maxlength="10" placeholder="Username" required> -->
+                <input type="tel" name="username" pattern="[0-9]{10}" maxlength="10" placeholder="Username" required onkeypress="return isNumberKey(event)">
+                <script>
+                    function isNumberKey(event) {
+                        var charCode = (event.which) ? event.which : event.keyCode;
+                        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                            event.preventDefault();
+                            return false;
+                        }
+                        return true;
+                    }
+                </script>
+
                 <input type="password" name="password" placeholder="Password" required>
 
                 <!-- <label for="role">Role:</label>
