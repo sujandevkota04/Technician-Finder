@@ -85,17 +85,25 @@
 
         <header>
             <h1>Home Page</h1>
-            <a href="/" class="logout-button">Logout</a>
+            <!-- <a href="/logout" class="logout-button">Logout</a> -->
+            <form action="/logout" method="post">
+                <button type="submit" class="logout-button">Logout</button>
+            </form>
+            
         </header>
     </div>
 
     <div class="services-container">
         <div class="service" id="painting-service">
-            <img src="../images/painting.jpg" alt="Painting">
+            <img src="../images/painting.jpg" alt="Painting" class="show-details">
             <h2>Painting</h2>
             <p>Professional painters for homes and businesses</p>
+
             <a href="/technicians?service=Painting">Query</a>
+
             <!-- <button class="query-button" data-service="Painting">Query</button> -->
+
+
             <div class="service-details">
                 <ul>
                     <li>Expertise in interior and exterior painting</li>
@@ -104,10 +112,15 @@
             </div>
         </div>
         <div class="service" id="plumbing-service">
-            <img src="../images/plumbing.jpg" alt="Plumbing">
+            <img src="../images/plumbing.jpg" alt="Plumbing" class="show-details">
             <h2>Plumbing</h2>
             <p>Reliable plumbers for all plumbing needs</p>
+
+
             <a href="/technicians?service=Plumbing">Query</a>
+
+
+
             <!-- <button class="query-button" data-service="Plumbing">Query</button> -->
             <div class="service-details">
                 <ul>
@@ -117,10 +130,16 @@
             </div>
         </div>
         <div class="service" id="electrician-service">
-            <img src="../images/electrician.jpg" alt="Electrician">
+            <img src="../images/electrician.jpg" alt="Electrician" class="show-details">
             <h2>Electrician</h2>
             <p>Trusted electricians for residential and commercial properties</p>
+
+
+
             <a href="/technicians?service=Electrician">Query</a>
+
+
+
             <!-- <button class="query-button" data-service="Electrician">Query</button> -->
             <div class="service-details">
                 <ul>

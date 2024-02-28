@@ -35,7 +35,7 @@ label {
 /*Added cotainer*/
 .container {
     /* width: 50%; */
-    max-width: 400px; /* Adjust width as needed */
+    max-width: 600px; /* Adjust width as needed */
     margin: 0 auto; /* Center horizontally */
     /*margin-top: 0 auto; /* Center vertically */
     padding: 2rem;

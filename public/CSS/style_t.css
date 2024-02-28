@@ -2,8 +2,8 @@ body, html {
     font-family: "Ubuntu", sans-serif;
     font-style: normal;
     background-color: #24232e;
-    /* margin: 0; */
     padding: 0;
+    /* margin: 0; */
     
     /*Added Code for center*/
     height: 100%;
@@ -22,8 +22,8 @@ body, html {
 } */
 /*Added cotainer*/
 .container {
-    /* width: 50%; */
-    max-width: 400px; /* Adjust width as needed */
+    width: 90%;
+    max-width: 600px; /* Adjust width as needed */
     margin: 0 auto; /* Center horizontally */
     /*margin-top: 0 auto; /* Center vertically */
     padding: 2rem;

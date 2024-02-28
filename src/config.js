@@ -6,9 +6,9 @@ const connect = mongoose.connect("mongodb://localhost:27017/Login");
 connect.then(() => {
     console.log("Database Connected Successfully");
 })
-.catch(() => {
-    console.log("Database cannot be Connected");
-})
+    .catch(() => {
+        console.log("Database cannot be Connected");
+    })
 
 
 
@@ -16,7 +16,7 @@ connect.then(() => {
 // Create Schema
 const Loginschema = new mongoose.Schema({
     name: {
-        type:String,
+        type: String,
         required: true
     },
     password: {
@@ -32,22 +32,37 @@ const Loginschema = new mongoose.Schema({
         type: String,
         required: true
     },
+    // location: {
+    //     type: String, 
+    //     required: true
+    // },
     location: {
-        type: String,
-        required: true
+        type: {
+            type: String,
+            enum: ['Point'],
+            required: true
+        },
+        coordinates: {
+            type: [Number], // Array of numbers: [longitude, latitude]
+            required: true,
+            index: '2dsphere' // Indicates it's a geospatial index
+        }
     },
+    
+
+
     service: {
         type: String,
-        required: function() {
+        required: function () {
             // Check if the 'services' field has any data
             // return this.services ? true : false;
-            return this.role ==='technician';
+            return this.role === 'technician';
         }
     },
 
     role: {
         type: String,
-        enum:['client', 'technician'], //possible value for role
+        enum: ['client', 'technician'], //possible value for role
         required: true
     }
 });

@@ -11,8 +11,11 @@
 </head>
 <body>
     <header>
-        <h1>Technician Profile</h1>
-        <br><a href='/'>Go to login page</a>
+        <h1>Technician Profile</h1><br>
+        <!-- <a href='/'>Go to login page</a> -->
+        <form action="/logout" method="post">
+            <button type="submit" class="logout-button">Logout</button>
+        </form>
     </header>
 
     <div class="profile-container">
@@ -54,7 +57,7 @@
         <div class="contact">
             <h3>Contact Information</h3>
             <p>Phone: <%= techniciandata.name %></p>
-            <p>Address: <%= techniciandata.location %></p>
+            <!-- <p>Address: <%= techniciandata.location %></p> -->
         </div>
 
         <!-- <div class="availability">

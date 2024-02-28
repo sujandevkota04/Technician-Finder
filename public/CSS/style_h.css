@@ -120,18 +120,23 @@ a, button:hover {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: left;
-    opacity: 0; /* Initially hide details */
+    opacity: 0;
     transition: opacity 0.3s ease;
+
+
+    /* visibility: hidden;
+    transition: visibility 0.3s ease; */
+
+
     background-color: rgba(0, 0, 0, 0.8);
     color: #fff;
     padding: 1rem;
     border-radius: 5px;
     pointer-events: none; /* Prevent clicking on hidden details */
 }
-
-
 .service:hover .service-details {
-    opacity: 1; /* Show details on hover */
+    opacity: 1;
+    /* visibility: visible; */
 }
 
 
