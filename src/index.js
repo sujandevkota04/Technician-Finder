@@ -5,7 +5,7 @@ const collection = require("./config");
 const calculateDistance = require("./haversine_filter");
 const session = require('express-session');
 const crypto = require('crypto');
-
+const utils = require("./utils"); 
 
 
 // const { Collection } = require('mongoose');
@@ -47,6 +47,8 @@ app.set('view engine', 'ejs');
 
 // static file
 app.use(express.static("public"));
+// Serve static files from the '/src/images' directory
+// app.use('/images', express.static(path.join(__dirname, 'Login', 'src', 'images')));
 // app.use(express.static("images"));
 
 
@@ -99,21 +101,43 @@ app.get("/t_profile/:id", requireLogin, async (req, res) => {
         res.setHeader('Pragma', 'no-cache');
         res.setHeader('Expires', '0');
 
-        // const technician = await collection.findOne({ name: req.body.username });
-        const technician = await collection.findById(req.params.id)
-        if (technician) {
-            res.render("t_profile", { techniciandata: technician })
+        const technicianId = req.params.id;
+        const technician = await collection.findById(technicianId);
 
-        } else {
-            res.status(404).send("Technician not found")
+        if (!technician) {
+            return res.status(404).send("Technician not found");
         }
 
+        // Check if the logged-in user is a technician
+        if (req.session.user.role === 'technician') {
+            // If technician, render the technician profile page without comment form
+            return res.render("t_profile", { techniciandata: technician, allowComment: false });
+        } else {
+            // If not technician, render the technician profile page with comment form
+            return res.render("t_profile", { techniciandata: technician, allowComment: true });
+        }
     } catch (error) {
-        console.error("Error fetching technician:", error)
-        res.status(500).send("Internal server error")
+        console.error("Error fetching technician:", error);
+        res.status(500).send("Internal server error");
     }
 });
 
+// Route to handle submission of new comments for the technician
+app.post("/t_profile/:id/comment", requireLogin, async (req, res) => {
+    try {
+        const technicianId = req.params.id;
+        const comment = req.body.comment;
+
+        // Find the technician by ID and update the comments array
+        await collection.findByIdAndUpdate(technicianId, { $push: { comments: comment } });
+
+        // Redirect back to the technician's profile page after adding the comment
+        res.redirect(`/t_profile/${technicianId}`);
+    } catch (error) {
+        console.error("Error adding comment:", error);
+        res.status(500).send("Internal server error");
+    }
+});
 
 // Register technician
 app.post("/signupt", async (req, res) => {
@@ -332,17 +356,24 @@ app.get("/filter", requireLogin, async (req, res) => {
         techniciansWithDistance.sort((a, b) => a.distance - b.distance);
 
         // Filter technicians within 5 km range
-        const maxDistanceInMeters = 60;
+        const maxDistanceInMeters = 5;
         const techniciansWithinRange = techniciansWithDistance.filter(technician => technician.distance <= maxDistanceInMeters);
 
         console.log("Technicians with Distance:", techniciansWithDistance);
+        res.render("filter_technician", { 
+            technicianlist: techniciansWithinRange, 
+            service: service,
+            generateInitialsImage: utils.generateInitialsImage
 
-        res.render("filter_technician", { technicianlist: techniciansWithinRange, service: service });
+         });
+
+
     } catch (error) {
         console.error("Error retrieving technicians:", error);
         res.status(500).send("Internal server error");
     }
 });
+module.exports = app;
 // Route to render the user profile page
 app.get("/c_profile", requireLogin, async (req, res) => {
     try {

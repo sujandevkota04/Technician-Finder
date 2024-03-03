@@ -1,70 +1,173 @@
-/* technician_list.css */
+/* 
+body {
+  font-family: 'Ubuntu', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
 header {
   text-align: center;
   padding: 3rem 0; 
-  background-color: #333; /* Subtle background */
-  width: 100%; /* Set width to 100% */
-  border-bottom: 1px solid #ddd; /* Divider */
-}
-h1 {
-  font-size: 1.8rem; /* Adjust size */
-  font-weight: bold; /* Bold text */
+  background-color: #333; 
+  width: 100%; 
+  border-bottom: 1px solid #ddd; 
   color: #fff;
-  margin-bottom: 0.5rem;
 }
 
+.container {
+  max-width: 800px; 
+  margin: 0 auto;
+  padding: 20px;
+}
 
-body {
-    font-family: sans-serif;
-    margin: 0;
-  }
-  
-  .container {
-    max-width: 800px; /* Adjust as needed */
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .technician-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
+.technician-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.technician-item {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.technician-item:last-child {
+  border-bottom: none;
+}
+
+.technician-info {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.technician-info h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.technician-info p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.view-profile {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.view-profile:hover {
+  color: #0056b3;
+}
+
+.profile-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+@media (max-width: 768px) {
   .technician-item {
-    display: flex;
-    align-items: center;
-    padding: 15px;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .technician-item:last-child {
-    border-bottom: none;
-  }
-  
-  .technician-info {
-    flex: 1; /* Expand to fill available space */
-    margin-left: 10px;
-  }
-  
-  .technician-info h2 {
-    font-size: 1.2rem;
-    margin-bottom: 5px;
-  }
-  
-  .technician-info p {
-    font-size: 0.9rem;
-    color: #666;
-  }
-  
-  @media (max-width: 768px) {
-    .technician-item {
       flex-direction: column;
       align-items: flex-start;
-    }
-  
-    .technician-info {
-      margin-left: 0;
-    }
   }
-  
+
+  .technician-info {
+      margin-left: 0;
+      margin-top: 10px;
+  }
+}  */
+
+
+/* Global styles **/
+body {
+  font-family: "Ubuntu", sans-serif;
+  font-style: normal;
+  color: #333; 
+  margin: 0;
+}
+
+
+header {
+  text-align: center;
+  padding: 3rem; 
+  background-color: #333; 
+  width: 100%; 
+  border-bottom: 1px solid #ddd; 
+  color: #fff;
+}
+
+
+.container {
+  display: flex; 
+  flex-wrap: wrap;
+  margin: 2rem auto; 
+  max-width: 1000px; 
+}
+
+.list {
+  flex: 1 0 300px; 
+  margin: 1rem; 
+  text-align: center;
+  border: 1px solid #ddd; 
+  border-radius: 5px; 
+  padding: 1rem; 
+  padding-bottom: fixed;
+  transition: box-shadow 0.2s ease-in-out; 
+}
+
+.list:hover {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); 
+}
+
+.list img {
+  width: 300px; 
+  height: 300px; 
+  object-fit: cover;
+  border-radius: 5px; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  transition: transform 0.3s ease; 
+}
+
+
+.list img:hover {
+  transform: scale(1.1); 
+}
+
+.list-details {
+  text-align: center;
+  padding: 1rem;
+  border-radius: 5px;
+  pointer-events: none;
+}
+
+
+a {
+  background-color: #333; 
+  color: #fff; 
+  padding: 0.5rem 7rem; 
+  border: none; 
+  border-radius: 5px; 
+  text-decoration: none; 
+  display: inline-block; 
+  cursor: pointer; 
+  transition: transform 0.3s ease; 
+}
+
+a:hover {
+  background-color: #222;
+  transform: scale(1.1); 
+
+} 
+
+
+

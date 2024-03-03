@@ -49,8 +49,6 @@ const Loginschema = new mongoose.Schema({
         }
     },
     
-
-
     service: {
         type: String,
         required: function () {
@@ -64,7 +62,8 @@ const Loginschema = new mongoose.Schema({
         type: String,
         enum: ['client', 'technician'], //possible value for role
         required: true
-    }
+    },
+    comments:[String]
 });
 
 
