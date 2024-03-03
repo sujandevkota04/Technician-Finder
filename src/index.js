@@ -2,6 +2,7 @@ const express = require('express');
 const path = require("path");
 const bcrypt = require("bcrypt");
 const collection = require("./config");
+const calculateDistance = require("./haversine_filter");
 const session = require('express-session');
 const crypto = require('crypto');
 
@@ -301,6 +302,67 @@ app.post("/logout", (req, res) => {
 
 
 
+
+
+//route to display the filtered list of technicians based on distance
+app.get("/filter", requireLogin, async (req, res) => {
+    try {
+        const userLocation = req.session.user.location.coordinates;
+        console.log("User Location:", userLocation);
+
+        const service = req.query.service;
+        console.log("Service:", service);
+
+        // Check if service parameter is defined
+        if (!service) {
+            return res.status(400).send("Missing service parameter");
+        }
+
+        // Query the database for technicians offering the specified service
+        const technicians = await collection.find({ service: service });
+        console.log("Technicians:", technicians);
+
+        // Calculate the distance between the user and each technician
+        const techniciansWithDistance = technicians.map(technician => {
+            const distance = calculateDistance(userLocation[1], userLocation[0], technician.location.coordinates[1], technician.location.coordinates[0]);
+            return { ...technician.toObject(), distance };
+        });
+
+        // Sort the technicians based on distance from the user
+        techniciansWithDistance.sort((a, b) => a.distance - b.distance);
+
+        // Filter technicians within 5 km range
+        const maxDistanceInMeters = 60;
+        const techniciansWithinRange = techniciansWithDistance.filter(technician => technician.distance <= maxDistanceInMeters);
+
+        console.log("Technicians with Distance:", techniciansWithDistance);
+
+        res.render("filter_technician", { technicianlist: techniciansWithinRange, service: service });
+    } catch (error) {
+        console.error("Error retrieving technicians:", error);
+        res.status(500).send("Internal server error");
+    }
+});
+// Route to render the user profile page
+app.get("/c_profile", requireLogin, async (req, res) => {
+    try {
+        // Set cache-control headers to prevent caching
+        res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+        res.setHeader('Pragma', 'no-cache');
+        res.setHeader('Expires', '0');
+        // Retrieve the user's data from the session
+        const userId = req.session.user._id;
+
+        // Query the database to fetch the user's data
+        const userData = await collection.findById(userId);
+
+        // Render the profile page with the user's data
+        res.render("c_profile", { userData: userData });
+    } catch (error) {
+        console.error("Error retrieving user data:", error);
+        res.status(500).send("Internal server error");
+    }
+});
 
 
 

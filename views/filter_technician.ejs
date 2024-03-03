@@ -20,6 +20,17 @@
                 <div class="technician-info">
                     <h2>Name: <%= technician.firstName %> <%= technician.lastName %></h2>
                     <h2>Contact: <%= technician.name %></h2>
+                    <% 
+                    var distanceInKm = technician.distance;
+                    var distanceDisplay;
+                    if (distanceInKm < 1) {
+                        var distanceInMeter = (distanceInKm * 1000).toFixed(2); // Convert kilometers to meters and round off to 2 decimal places
+                        distanceDisplay = distanceInMeter + " meters";
+                    } else {
+                        distanceDisplay = distanceInKm.toFixed(2) + " km"; // Round off to 2 decimal places
+                    }
+                    %>
+                    <h2>Distance: <%= distanceDisplay %></h2>
                 </div>
             </li>
             <% }) %>
