@@ -158,13 +158,28 @@ a, button:hover {
 
 #profile {
     position: absolute;
-    top: 10;
-    left: 0;
-    background-color: #222;
+    top: 10px; /* Adjust as needed */
+    right: 10px; /* Adjust as needed */
+    background-color: #aa3737;
+    padding: 10px; /* Add padding to make it visible */
+    border-radius: 50%; /* Make it a circle */
+    color: #fff;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90px; /* Adjust size as needed */
+    height: 90px; /* Adjust size as needed */
 }
+
 #profile:hover {
     background-color: #444;
+    transform: scale(1.1);
+
 }
+
+
 
 
 

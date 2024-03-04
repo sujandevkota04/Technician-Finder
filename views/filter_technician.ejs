@@ -54,32 +54,44 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Filtered Technicians</title>
-    <link rel="stylesheet" href="../CSS/technician_list.css">
+    <link rel="stylesheet" href="../CSS/filter_technician.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <header>
         <h1>Technicians Offering <%= service %> Service Near You</h1>
-
     </header>
+
+
+
+    <div class="f-button">
+        <a href="/sfilter?service=<%= service %>">Filter Technicians by Sentiment</a>
+    </div>
+
+
 
     <div class="container">
         <% technicianlist.forEach(technician => { %>
-            <div class="list">
-                <!-- <img src="<%= technician.image %>" alt="<%= technician.firstName %> <%= technician.lastName %>"> -->
-                <img src="<%=  generateInitialsImage(technician.firstName, technician.lastName) %>" alt="<%= technician.firstName %> <%= technician.lastName %>">
-                
-                <div class="list-details">
-                    <h2><%= technician.firstName %> <%= technician.lastName %></h2>
-                    <h2>Contact: <%= technician.name %></h2>
-                    <% 
+        <div class="list">
+            <!-- <img src="<%= technician.image %>" alt="<%= technician.firstName %> <%= technician.lastName %>"> -->
+            <img src="<%=  generateInitialsImage(technician.firstName, technician.lastName) %>"
+                alt="<%= technician.firstName %> <%= technician.lastName %>">
+
+            <div class="list-details">
+                <h2><%= technician.firstName %> <%= technician.lastName %></h2>
+                <h2>Contact: <%= technician.name %></h2>
+                <% 
                     var distanceInKm = technician.distance;
                     var distanceDisplay;
                     if (distanceInKm < 1) {
@@ -89,14 +101,14 @@
                         distanceDisplay = distanceInKm.toFixed(2) + " km"; // Round off to 2 decimal places
                     }
                     %>
-                    <h2>Distance: <%= distanceDisplay %></h2>
-                    <!-- <a href="/t_profile/<%= technician._id %>">View Profile</a> -->
-                    <a href="/t_profile/<%= technician._id %>" style="pointer-events: all !important;">View Profile</a>
-                </div>
+                <h2>Distance: <%= distanceDisplay %></h2>
+                <!-- <a href="/t_profile/<%= technician._id %>">View Profile</a> -->
+                <a href="/t_profile/<%= technician._id %>" style="pointer-events: all !important;">View Profile</a>
             </div>
+        </div>
         <% }) %>
     </div>
 
-
 </body>
+
 </html>

@@ -35,7 +35,7 @@
         </div>
 
         <div class="services">
-            <h3>Services That Should Be Offered</h3>
+            <h2>Services Offering</h2>
             <% if (techniciandata.service === "Electrician") { %>
             <ul>
                 <li>Electrical repairs and installations</li>
@@ -78,10 +78,32 @@
             </ul>
 
             <% if (allowComment) { %>
-            <form action="/t_profile/<%= techniciandata._id %>/comment" method="post">
-                <textarea name="comment" placeholder="Add your comment"></textarea><br>
+            <form action="/t_profile/<%= techniciandata._id %>/comment" method="post"
+                onsubmit="return validateComment()">
+                <textarea id="comment" name="comment" placeholder="Add your comment"></textarea><br>
                 <button type="submit">Submit Comment</button>
             </form>
+
+            <script>
+                function validateComment() {
+                    // Get the comment input value
+                    var comment = document.getElementById('comment').value;
+
+                    // Regular expression to allow alphabets and spaces only (at least one alphabet required)
+                    var regex = /^[a-zA-Z]+(?:\s+[a-zA-Z]+)*$/;
+
+                    // Check if the comment contains only alphabets and is not empty
+                    if (!regex.test(comment.trim())) {
+                        // Alert the user and prevent form submission
+                        alert("Please enter only alphabets for the comment and ensure it's not empty.");
+                        return false;
+                    }
+
+                    // Allow form submission if validation passes
+                    return true;
+                }
+            </script>
+
             <% } %>
         </div>
 
