@@ -98,7 +98,7 @@ function generateInitialsImage(firstName, lastName) {
     // Draw a circle with the background color
     context.beginPath();
     context.arc(200, 200, 180, 0, 2 * Math.PI); // Centered circle
-    context.fillStyle = '#1f0f0f'; // Brownish background color
+    context.fillStyle = '#1f0f0f'; 
     context.fill();
 
     // Draw the initials with white color

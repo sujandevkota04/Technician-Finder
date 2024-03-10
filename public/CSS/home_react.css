@@ -1,21 +1,19 @@
-
+/* Global styles **/
 body {
   font-family: "Ubuntu", sans-serif;
   font-style: normal;
   color: #333; 
   margin: 0;
+  background-color: #f8f9fa; /* Added background color for better readability */
 }
-
 
 header {
   text-align: center;
   padding: 3rem; 
   background-color: #333; 
-  width: 100%; 
-  border-bottom: 1px solid #ddd; 
   color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Added shadow for depth */
 }
-
 
 .container {
   display: flex; 
@@ -30,54 +28,46 @@ header {
   text-align: center;
   border: 1px solid #ddd; 
   border-radius: 5px; 
-  padding: 1rem; 
-  padding-bottom: fixed;
+  padding: 1rem;
+  background-color: #fff; /* Added background color */
   transition: box-shadow 0.2s ease-in-out; 
 }
 
 .list:hover {
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Increased shadow on hover for emphasis */
 }
 
 .list img {
-  width: 300px; 
-  height: 300px; 
-  object-fit: cover;
-  border-radius: 5px; 
+  width: 100%; /* Ensuring image responsiveness */
+  height: auto; /* Ensuring image aspect ratio */
+  border-top-left-radius: 5px; /* Rounded corners only on top */
+  border-top-right-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
   transition: transform 0.3s ease; 
 }
 
-
 .list img:hover {
-  transform: scale(1.1); 
+  transform: scale(1.05); /* Slightly increase scale on hover for subtle animation */
 }
 
 .list-details {
-  text-align: center;
   padding: 1rem;
   border-radius: 5px;
-  pointer-events: none;
 }
-
 
 a {
   background-color: #333; 
   color: #fff; 
-  padding: 0.5rem 7rem; 
+  padding: 0.5rem 1rem; /* Reduced padding */
   border: none; 
   border-radius: 5px; 
   text-decoration: none; 
   display: inline-block; 
   cursor: pointer; 
-  transition: transform 0.3s ease; 
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Added transition for background color */
 }
 
 a:hover {
   background-color: #222;
   transform: scale(1.1); 
-
 } 
-
-
-

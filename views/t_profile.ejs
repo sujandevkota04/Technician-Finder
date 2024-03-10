@@ -70,7 +70,7 @@
 
 
             <!-- Display previous client comments -->
-            <h3>Comments:</h3>
+            <h3>Leave a Comment</h3>
             <ul>
                 <% techniciandata.comments.forEach(comment => { %>
                 <li><%= comment %></li>
@@ -84,7 +84,7 @@
                 <button type="submit">Submit Comment</button>
             </form>
 
-            <script>
+            <!-- <script>
                 function validateComment() {
                     // Get the comment input value
                     var comment = document.getElementById('comment').value;
@@ -102,7 +102,7 @@
                     // Allow form submission if validation passes
                     return true;
                 }
-            </script>
+            </script> -->
 
             <% } %>
         </div>

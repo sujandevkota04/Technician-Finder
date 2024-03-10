@@ -1,4 +1,6 @@
-<!-- 
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,77 +9,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <link rel="stylesheet" href="../CSS/style_h.css">
+    <!-- <link rel="stylesheet" href="../CSS/home_react.css"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
         rel="stylesheet">
-</head>
-
-<body>
-    <header>
-            <h1>Home Page</h1>
-            <a href="/" class="logout-button">Logout</a>
-    </header>
-
-    <div class="services-container">
-        <div class="service">
-            <img src="../images/painting.jpg" alt="Painting">
-            <h2>Painting</h2>
-            <p>Professional painters for homes and businesses</p>
-            <a href="#">Query</a>
-            <div class="service-details">
-                <ul>
-                    <li>Expertise in interior and exterior painting</li>
-                    <li>High-quality finishes for a polished look</li>
-                </ul>
-            </div>
-        </div>
-        <div class="service">
-            <img src="../images/plumbing.jpg" alt="Pluming">
-            <h2>Plumbing</h2>
-            <p>Reliable plumbers for all plumbing needs</p>
-            <a href="#">Query</a>
-            <div class="service-details">
-                <ul>
-                    <li>Services include installation, repair, and maintenance</li>
-                    <li>Prompt response to plumbing emergencies</li>
-                </ul>
-            </div>
-        </div>
-        <div class="service">
-            <img src="../images/electrician.jpg" alt="Electrician">
-            <h2>Electrician</h2>
-            <p>Trusted electricians for residential and commercial properties</p>
-            <a href="#">Query</a>
-            <div class="service-details">
-                <ul>
-                    <li>Ensuring safety and compliance with electrical standards</li>
-                </ul>
-        </div>
-    </div>
-</body>
-
-</html>
--->
-
-
-
-<!-- Added Code -->
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
-    <link rel="stylesheet" href="../CSS/style_h.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
-        rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
 </head>
 
 <body>
@@ -85,7 +23,6 @@
 
         <header>
             <h1>Home Page</h1>
-            <!-- <a href="/logout" class="logout-button">Logout</a> -->
             <form action="/logout" method="post">
                 <button type="submit" class="logout-button">Logout</button>
             </form>
@@ -102,10 +39,8 @@
             <h2>Painting</h2>
             <p>Professional painters for homes and businesses</p>
 
-            <!-- <a href="/technicians?service=Painting">Query</a> -->
             <a href="/filter?service=Painting">Query</a>
 
-            <!-- <button class="query-button" data-service="Painting">Query</button> -->
 
 
             <div class="service-details">
@@ -121,13 +56,11 @@
             <p>Reliable plumbers for all plumbing needs</p>
 
 
-            <!-- <a href="/technicians?service=Plumbing">Query</a> -->
-            <a href="/filter?service=Plumbig">Query</a>
+            <a href="/filter?service=Plumbing">Query</a>
 
 
 
 
-            <!-- <button class="query-button" data-service="Plumbing">Query</button> -->
             <div class="service-details">
                 <ul>
                     <li>Services include installation, repair, and maintenance</li>
@@ -142,13 +75,11 @@
 
 
 
-            <!-- <a href="/technicians?service=Electrician">Query</a> -->
             <a href="/filter?service=Electrician">Query</a>
 
 
 
 
-            <!-- <button class="query-button" data-service="Electrician">Query</button> -->
             <div class="service-details">
                 <ul>
                     <li>Specialized in wiring, fixture installation, and repairs</li>

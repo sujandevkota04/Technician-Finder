@@ -9,16 +9,6 @@ const utils = require("./utils");
 
 
 
-const natural = require('natural');
-const stemmer = natural.PorterStemmer;
-const Analyzer = natural.SentimentAnalyzer;
-const analyzer = new Analyzer("English", stemmer, "afinn");
-
-
-// const { Collection } = require('mongoose');
-// const { render } = require('ejs');
-// const { data } = require('jquery');
-
 const app = express();
 
 // Generate a random string of 32 characters
@@ -367,7 +357,7 @@ app.get("/filter", requireLogin, async (req, res) => {
         techniciansWithDistance.sort((a, b) => a.distance - b.distance);
 
         // Filter technicians within 5 km range
-        const maxDistanceInMeters = 16;
+        const maxDistanceInMeters = 15;
         const techniciansWithinRange = techniciansWithDistance.filter(technician => technician.distance <= maxDistanceInMeters);
 
         console.log("Technicians with Distance:", techniciansWithDistance);
@@ -410,16 +400,21 @@ app.get("/c_profile", requireLogin, async (req, res) => {
 
 
 
+
+const { getSentiment } = require('./getSentiment');
+
 // Function to calculate the average sentiment score
 function calculateAverageSentiment(sentiments) {
-    // Calculate the total sentiment score
-    const totalSentiment = sentiments.reduce((total, score) => total + score, 0);
+    if (sentiments.length === 0) {
+        return 0; // Return 0 if there are no sentiments
+    }
 
-    // Calculate the average sentiment score
-    const averageSentiment = sentiments.length > 0 ? totalSentiment / sentiments.length : 0;
+    const sum = sentiments.reduce((total, sentiment) => total + sentiment, 0);
 
-    return averageSentiment;
+
+    return sum / sentiments.length;
 }
+
 
 // Route to handle sentiment analysis sorting of technicians based on comments
 app.get("/sfilter", requireLogin, async (req, res) => {
@@ -445,7 +440,7 @@ app.get("/sfilter", requireLogin, async (req, res) => {
         techniciansWithDistance.sort((a, b) => a.distance - b.distance);
 
         // Filter technicians within 5 km range
-        const maxDistanceInMeters = 16;
+        const maxDistanceInMeters = 15;
         const techniciansWithinRange = techniciansWithDistance.filter(technician => technician.distance <= maxDistanceInMeters);
 
         // Perform sentiment analysis and sort technicians based on sentiment scores
@@ -458,18 +453,8 @@ app.get("/sfilter", requireLogin, async (req, res) => {
                 // Perform sentiment analysis on each comment
                 const sentiments = comments.map(comment => {
                     try {
-                        // Use natural's built-in sentiment analysis
-                        // const analyzer = new natural.SentimentAnalyzer();
-                        // const score = analyzer.getSentiment(comment);
-
-                        // // Preprocess the comment string to remove line breaks and carriage returns
-                        // const sanitizedComment = comment.replace(/[\r\n]/g, '');
-
-                        // Tokenize the sanitized comment into words
-                        const tokenizer = new natural.WordTokenizer();
-                        const words = tokenizer.tokenize(comment);
-                        const score = analyzer.getSentiment(words);
-
+                        // Use getSentiment function for sentiment analysis
+                        const score = getSentiment(comment);
                         return score;
                     } catch (error) {
                         console.error("Error analyzing sentiment for comment:", error);
@@ -479,25 +464,19 @@ app.get("/sfilter", requireLogin, async (req, res) => {
 
                 // Calculate the average sentiment score
                 const averageSentiment = calculateAverageSentiment(sentiments);
-                // console.log(`Average sentiment score for ${technician.name} is ${averageSentiment}`);
-
 
                 // Attach the average sentiment score to the technician object
                 return {
-                    // ...technician.toObject(),
                     ...technician,
                     averageSentiment: averageSentiment,
-
-                    ...({ password: undefined }) // Exclude the password field
+                    password: undefined // Exclude the password field
                 };
             } else {
                 // No comments, so average sentiment score is 0
                 return {
-                    // ...technician.toObject(),
                     ...technician,
                     averageSentiment: 0,
-
-                    ...({ password: undefined }) // Exclude the password field
+                    password: undefined // Exclude the password field
                 };
             }
         });
@@ -505,8 +484,6 @@ app.get("/sfilter", requireLogin, async (req, res) => {
         // Sort technicians based on average sentiment score in descending order
         sortedTechnicians.sort((a, b) => b.averageSentiment - a.averageSentiment);
         console.log('Sorted technicians by sentiment:', sortedTechnicians);
-
-
 
         // Render sentiment_filter.ejs with sorted technicians and technicians within range
         res.render("sentiment_filter", {
@@ -519,8 +496,6 @@ app.get("/sfilter", requireLogin, async (req, res) => {
         res.status(500).send("Internal server error");
     }
 });
-
-
 
 
 
